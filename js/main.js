@@ -12,22 +12,25 @@ document.addEventListener('DOMContentLoaded',() => {
     let score = 0;
 
     function createBoard() {
-        for (let i= 0; i < width * width ;i++) {
+        console.log('crate board');
+        for (let i = 0; i < width * width ;i++) {
             let square = document.createElement('div');
+            square.classList.add('cell')
             square.innerHTML = `0`;
             gridDisplay.appendChild(square);
             squares.push(square);
         }
         generate();
-        generate();
+        //generate();
     }
 
     createBoard();
 
     function generate() {
         let randomNumber = Math.floor(Math.random() * squares.length);
-        if(squares[randomNumber].innerHTML == 0) {
-            squares[randomNumber].innerHTML = `2`;
+        if(squares[randomNumber].innerHTML === '0') {
+            squares[randomNumber].innerHTML = '2';
+            squares[randomNumber].classList.add('cell-2');
             checkForLose();
         } else {
             generate();
@@ -152,16 +155,16 @@ document.addEventListener('DOMContentLoaded',() => {
 
 
     function control(e) {
-        if(e.code === 'ArrowRight') {
+        if(e.code === 'ArrowRight' || e.code === 'KeyD') {
             keyRight();
         }
-        if(e.code === 'ArrowLeft') {
+        if(e.code === 'ArrowLeft' || e.code === 'KeyA') {
             keyLeft();
         }
-        if(e.code === 'ArrowUp') {
+        if(e.code === 'ArrowUp' || e.code === 'KeyW') {
             keyUp();
         }
-        if(e.code === 'ArrowDown') {
+        if(e.code === 'ArrowDown' || e.code === 'KeyS') {
             keyDown();
         }
     }
@@ -202,6 +205,8 @@ document.addEventListener('DOMContentLoaded',() => {
         for (let i = 0; i < squares.length;i++) {
             if(squares[i].innerHTML === '2048') {
                 resultDisplay.innerHTML = '🏆 🏆 🏆 You win 🏆 🏆 🏆';
+                resultDisplay.classList.add('won');
+                resultDisplay.classList.remove('lost');
                 document.removeEventListener('keyup',control);
             }
         }
@@ -216,6 +221,8 @@ document.addEventListener('DOMContentLoaded',() => {
         }
         if(zeros === 0) {
             resultDisplay.innerHTML = '❌ ❌ ❌ You loose ❌ ❌ ❌';
+            resultDisplay.classList.add('lost');
+            resultDisplay.classList.remove('won');
             document.removeEventListener('keyup',control);
         }
     }

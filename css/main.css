@@ -1,22 +1,14 @@
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
 html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
+  font-family: sans-serif;
+  background-color: #bbada0;
 }
 
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * Vendor-prefixed and regular ::selection selectors cannot be combined:
- * https://stackoverflow.com/a/16982510/7133471
- *
- * Customize the background color to match your design.
- */
+*, ::after, ::before {
+  box-sizing: border-box;
+}
 
 ::-moz-selection {
   background: #b3d4fc;
@@ -28,10 +20,6 @@ html {
   text-shadow: none;
 }
 
-/*
- * A better looking default horizontal rule
- */
-
 hr {
   display: block;
   height: 1px;
@@ -41,11 +29,7 @@ hr {
   padding: 0;
 }
 
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
+
 
 audio,
 canvas,
@@ -56,19 +40,12 @@ video {
   vertical-align: middle;
 }
 
-/*
- * Remove default fieldset styles.
- */
-
 fieldset {
   border: 0;
   margin: 0;
   padding: 0;
 }
 
-/*
- * Allow only vertical resizing of textareas.
- */
 
 textarea {
   resize: vertical;
@@ -134,18 +111,112 @@ textarea {
   flex-wrap: wrap;
   width: 400px;
   height: 400px;
-  background-color: #888888;
+  background-color: #bbada0;
+
+}
+
+.container {
+  display: grid;
+  max-width: 400px;
+  grid-template-columns: 1fr;
+  margin: 0 auto;
+}
+
+.score-title {
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.score-title span {
+  font-weight: bold;
 }
 
 
 .grid div {
   width: 100px;
   height: 100px;
-  background-color: bisque;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
   font-size: 2em;
+  border-radius: 10px;
+}
+.cell {
+  border: 2px solid #bbada0;
+  background-color: black;
+  color: white;
 }
 
+.cell.cell-2 {
+  background-color: #eee4da;
+  color: #756d64;
+}
+
+.cell.cell-4 {
+
+}
+
+.cell.cell-8 {
+
+}
+
+.cell.cell-16 {
+
+}
+
+.cell.cell-32 {
+
+}
+
+.cell.cell-64 {
+
+}
+
+.cell.cell-128 {
+
+}
+
+.cell.cell-256 {
+
+}
+
+.cell.cell-512 {
+
+}
+
+.cell.cell-1024 {
+
+}
+
+.cell.cell-2048 {
+
+}
+
+.cell.cell-4096 {
+
+}
+
+.cell.cell-too-high {
+
+}
+
+.info {
+  font-size: 0.75rem;
+  color: #545454;
+}
+
+#js-result {
+  padding-top: 1rem;
+  text-align: center;
+
+  font-weight: bold;
+}
+
+#js-result.lost {
+  color: red;
+}
+
+#js-result.won {
+  color: green;
+}
