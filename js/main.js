@@ -11,26 +11,44 @@ document.addEventListener('DOMContentLoaded',() => {
 
     let score = 0;
 
+    const lookupVariables = {
+        '0' : {bg: 'black',text: 'white'},
+        '2' : {bg: '#eee4da',text: '#756d64'},
+        '4' : {bg: '#ede0c8',text: '#756d64'},
+        '8' : {bg: '#f59563',text: 'white'},
+        '16' : {bg: '#f59563',text: 'white'},
+        '32' : {bg: '#f67c5f',text: 'white'},
+        '64' : {bg: '#f65e3b',text: 'white'},
+        '128' : {bg: '#edcf72',text: 'white'},
+        '256' : {bg: '#edcc61',text: 'white'},
+        '512' : {bg: '#eac651',text: 'white'},
+        '1024' : {bg: '#f0c63c',text: 'white'},
+        '2048' : {bg: '#edc22e',text: 'white'},
+        '4096' : {bg: '#b784ab',text: 'white'},
+        'tooHigh': {bg: '#aa60a6',text: 'white'},
+    }
+
     function createBoard() {
-        console.log('crate board');
         for (let i = 0; i < width * width ;i++) {
             let square = document.createElement('div');
             square.classList.add('cell')
-            square.innerHTML = `0`;
+            square.innerHTML = '0';
             gridDisplay.appendChild(square);
             squares.push(square);
         }
         generate();
-        //generate();
+        generate();
     }
-
-    createBoard();
 
     function generate() {
         let randomNumber = Math.floor(Math.random() * squares.length);
         if(squares[randomNumber].innerHTML === '0') {
-            squares[randomNumber].innerHTML = '2';
-            squares[randomNumber].classList.add('cell-2');
+
+            let square = squares[randomNumber];
+            square.innerHTML = '2';
+            square.style.cssText = `background-color: ${lookupVariables['2'].bg};color:  ${lookupVariables['2'].text};`;
+            square.classList.add('cell-2');
+
             checkForLose();
         } else {
             generate();
@@ -56,11 +74,28 @@ document.addEventListener('DOMContentLoaded',() => {
                 squares[i+1].innerHTML = `${newRow[1]}`;
                 squares[i+2].innerHTML = `${newRow[2]}`;
                 squares[i+3].innerHTML = `${newRow[3]}`;
+
+                if(lookupVariables[newRow[0]]) {
+                    squares[i].style.cssText = `background-color: ${lookupVariables[newRow[0]].bg};color:  ${lookupVariables[newRow[0]].text};`;
+                }
+
+                if(lookupVariables[newRow[1]]) {
+                    squares[i+1].style.cssText = `background-color: ${lookupVariables[newRow[1]].bg};color:  ${lookupVariables[newRow[1]].text};`;
+                }
+
+                if(lookupVariables[newRow[2]]) {
+                    squares[i+2].style.cssText = `background-color: ${lookupVariables[newRow[2]].bg};color:  ${lookupVariables[newRow[2]].text};`;
+                }
+
+                if(lookupVariables[newRow[3]]) {
+                    squares[i+3].style.cssText = `background-color: ${lookupVariables[newRow[3]].bg};color:  ${lookupVariables[newRow[3]].text};`;
+                }
             }
         }
     }
-    moveRight();
 
+    createBoard();
+    moveRight();
 
     //move left
     function moveLeft() {
@@ -81,6 +116,22 @@ document.addEventListener('DOMContentLoaded',() => {
                 squares[i+1].innerHTML = `${newRow[1]}`;
                 squares[i+2].innerHTML = `${newRow[2]}`;
                 squares[i+3].innerHTML = `${newRow[3]}`;
+
+                if(lookupVariables[newRow[0]]) {
+                    squares[i].style.cssText = `background-color: ${lookupVariables[newRow[0]].bg};color:  ${lookupVariables[newRow[0]].text};`;
+                }
+
+                if(lookupVariables[newRow[1]]) {
+                    squares[i+1].style.cssText = `background-color: ${lookupVariables[newRow[1]].bg};color:  ${lookupVariables[newRow[1]].text};`;
+                }
+
+                if(lookupVariables[newRow[2]]) {
+                    squares[i+2].style.cssText = `background-color: ${lookupVariables[newRow[2]].bg};color:  ${lookupVariables[newRow[2]].text};`;
+                }
+
+                if(lookupVariables[newRow[3]]) {
+                    squares[i+3].style.cssText = `background-color: ${lookupVariables[newRow[3]].bg};color:  ${lookupVariables[newRow[3]].text};`;
+                }
             }
         }
     }
@@ -103,6 +154,22 @@ document.addEventListener('DOMContentLoaded',() => {
             squares[i+width].innerHTML = `${newColumn[1]}`;
             squares[i+(width*2)].innerHTML = `${newColumn[2]}`;
             squares[i+(width*3)].innerHTML = `${newColumn[3]}`;
+
+            if(lookupVariables[newColumn[0]]) {
+                squares[i].style.cssText = `background-color: ${lookupVariables[newColumn[0]].bg};color:  ${lookupVariables[newColumn[0]].text};`;
+            }
+
+            if(lookupVariables[newColumn[1]]) {
+                squares[i+width].style.cssText = `background-color: ${lookupVariables[newColumn[1]].bg};color:  ${lookupVariables[newColumn[1]].text};`;
+            }
+
+            if(lookupVariables[newColumn[2]]) {
+                squares[i+(width*2)].style.cssText = `background-color: ${lookupVariables[newColumn[2]].bg};color:  ${lookupVariables[newColumn[2]].text};`;
+            }
+
+            if(lookupVariables[newColumn[3]]) {
+                squares[i+(width*3)].style.cssText = `background-color: ${lookupVariables[newColumn[3]].bg};color:  ${lookupVariables[newColumn[3]].text};`;
+            }
         }
     }
 
@@ -124,6 +191,22 @@ document.addEventListener('DOMContentLoaded',() => {
             squares[i+width].innerHTML = `${newColumn[1]}`;
             squares[i+(width*2)].innerHTML = `${newColumn[2]}`;
             squares[i+(width*3)].innerHTML = `${newColumn[3]}`;
+
+            if(lookupVariables[newColumn[0]]) {
+                squares[i].style.cssText = `background-color: ${lookupVariables[newColumn[0]].bg};color:  ${lookupVariables[newColumn[0]].text};`;
+            }
+
+            if(lookupVariables[newColumn[1]]) {
+                squares[i+width].style.cssText = `background-color: ${lookupVariables[newColumn[1]].bg};color:  ${lookupVariables[newColumn[1]].text};`;
+            }
+
+            if(lookupVariables[newColumn[2]]) {
+                squares[i+(width*2)].style.cssText = `background-color: ${lookupVariables[newColumn[2]].bg};color:  ${lookupVariables[newColumn[2]].text};`;
+            }
+
+            if(lookupVariables[newColumn[3]]) {
+                squares[i+(width*3)].style.cssText = `background-color: ${lookupVariables[newColumn[3]].bg};color:  ${lookupVariables[newColumn[3]].text};`;
+            }
         }
     }
 
@@ -171,6 +254,13 @@ document.addEventListener('DOMContentLoaded',() => {
 
     document.addEventListener('keyup',control);
 
+    document.addEventListener('click',(e) => {
+        if(e.target.id === 'left') {keyLeft();}
+        if(e.target.id === 'top') {keyUp();}
+        if(e.target.id === 'down') { keyDown();}
+        if(e.target.id === 'right') {keyRight();}
+    });
+
     function keyRight() {
         moveRight();
         combineRow();
@@ -203,7 +293,7 @@ document.addEventListener('DOMContentLoaded',() => {
 
     function checkForWin() {
         for (let i = 0; i < squares.length;i++) {
-            if(squares[i].innerHTML === '2048') {
+            if(squares[i].innerHTML === '4096') {
                 resultDisplay.innerHTML = '🏆 🏆 🏆 You win 🏆 🏆 🏆';
                 resultDisplay.classList.add('won');
                 resultDisplay.classList.remove('lost');
